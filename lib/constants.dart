@@ -9,7 +9,7 @@ const kpageViewTextStyle = TextStyle(
 );
 
 
-const kApiKey = 'AIzaSyBGu9fV8eDbmjOj-ac3ZjkWb9X_OgXZ9cY';
+const kApiKey = 'Firebase Tokenkey Here';
 
 const kStoreCardStyle = TextStyle(
   fontSize: 12,

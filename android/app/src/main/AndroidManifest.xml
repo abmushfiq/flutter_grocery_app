@@ -42,6 +42,6 @@
             android:value="2" />
 
        <meta-data android:name="com.google.android.geo.API_KEY"
-           android:value="AIzaSyBGu9fV8eDbmjOj-ac3ZjkWb9X_OgXZ9cY"/>
+           android:value="Firebase Token Here"/>
     </application>
 </manifest>
