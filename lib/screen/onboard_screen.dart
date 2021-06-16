@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dots_indicator/dots_indicator.dart';
@@ -28,7 +30,7 @@ List<Widget> _pages =[
 
   Column(children: [
     Expanded(child: Image.asset('images/deliverfood.png')) ,
-    Text('Quick Deliver to your Doorstep', style: kpageViewTextStyle,),
+    Text('Quick Deliver to your Doorstep', style: kpageViewTextStyle,textAlign: TextAlign.center,),
   ],)
 ];
 class _OnBaordScreenState extends State<OnBaordScreen> {
@@ -47,15 +49,16 @@ class _OnBaordScreenState extends State<OnBaordScreen> {
             },
           ),
         ),
-        SizedBox(height: 20,),
+        SizedBox(height: 10,),
         DotsIndicator(
           dotsCount: _pages.length,
           position: _currentPage.toDouble(),
           decorator: DotsDecorator(
+
               size: const Size.square(9.0),
               activeSize: const Size(18.0, 9.0),
               activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-              // activeColor: Colors.blue
+               activeColor: Theme.of(context).primaryColor,
           ),
         ),
         SizedBox(height: 20,),

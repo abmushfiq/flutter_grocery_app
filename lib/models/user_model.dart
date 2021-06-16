@@ -16,8 +16,8 @@ class UserModel{
   String get id => _id;
 
   UserModel.fromSnapshot(DocumentSnapshot snapshot){
-    _number = snapshot.data() [NUMBER];
-    _id = snapshot.data()[ID];
+    _number = snapshot[NUMBER];
+    _id = snapshot[ID];
   }
 
 }

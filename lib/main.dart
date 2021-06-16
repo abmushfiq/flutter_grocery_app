@@ -1,14 +1,19 @@
 // @dart=2.9
 
-import 'dart:async';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/provider/auth_provider.dart';
+import 'package:flutter_project/provider/location_provider.dart';
+import 'package:flutter_project/provider/store_provider.dart';
 import 'package:flutter_project/screen/homeScreen.dart';
+import 'package:flutter_project/screen/landing_screen.dart';
+import 'package:flutter_project/screen/login_screen.dart';
+import 'package:flutter_project/screen/map_screen.dart';
 import 'package:flutter_project/screen/welcome_screen.dart';
 import 'package:provider/provider.dart';
+
+import 'screen/splash_screen.dart';
 
 
 
@@ -22,6 +27,13 @@ void main() async{
       ChangeNotifierProvider(
         create: (_)=> AuthProvider(),
       ),
+
+          ChangeNotifierProvider(
+            create: (_)=> LocationProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (_)=> StoreProvider(),
+          ),
     ],
     child:MyApp(),
     ),);
@@ -32,64 +44,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Colors.blue
+        primaryColor: Color(0xFF1DA1F9),
+        fontFamily: 'Lato'
       ),
-      home: SplashScreen(),
+      initialRoute: SplashScreen.id,
+      routes: {
+        SplashScreen.id:(context) => SplashScreen(),
+        HomeScreen.id :(context) => HomeScreen(),
+        WelcomeScreen.id:(context) => WelcomeScreen(),
+        MapScreen.id:(context)=>MapScreen(),
+        LoginScreen.id:(context)=>LoginScreen(),
+        LandingScreen.id:(context)=>LandingScreen(),
+
+
+      },
     );
   }
 }
 
-class SplashScreen extends StatefulWidget{
-
-  @override
-  _SplashScreenState createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  
-  @override
-  void initState() {
-    Timer(
-      Duration(
-        seconds: 3,
-      ),(){
-      FirebaseAuth.instance.authStateChanges().listen((User user) {
-        if(user==null){
-          Navigator.pushReplacement(context, MaterialPageRoute(
-            builder: (context)=>WelcomeScreen(),
-          )
-          );
-        }else{
-          Navigator.pushReplacement(context, MaterialPageRoute(
-            builder: (context)=>HomeScreen(),
-          )
-          );
-        }
-      });
-    }
-    );
-    // TODO: implement initState
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-            children: [
-
-              Image.asset('images/logo.png'),
-              Text('Grocery Store', style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold) ),
-    ],
-
-
-      ),
-    )
-    );
-  }
-}
 
 
